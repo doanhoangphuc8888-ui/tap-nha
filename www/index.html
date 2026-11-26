@@ -1,0 +1,153 @@
+<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="dark"><title>Tập Nhà</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0D1117;--sf:#161C26;--sf2:#202938;--tx:#EAF0F6;--mu:#8B97A8;--ne:#C8FF2E;--or:#FF7A1A;--ln:#2A3342;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--bg)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 15px/1.45 "DM Sans",system-ui,sans-serif;max-width:480px;margin:0 auto;padding-bottom:92px}
+h1,h2,h3,.num,.big-t{font-family:"Barlow Condensed","Arial Narrow",sans-serif;margin:0;font-weight:800;letter-spacing:.2px}
+h1{font-size:40px;line-height:1}h2{font-size:28px}h3{font-size:20px;font-weight:700}
+.mu{color:var(--mu)}p{margin:4px 0}
+.hd{padding:18px 20px 12px}
+.card{background:var(--sf);border-radius:20px;padding:16px;margin:0 16px 12px}
+.row{display:flex;align-items:center;gap:12px}.sp{justify-content:space-between}.wr{flex-wrap:wrap}
+button,select,input{font:inherit;color:inherit}
+button{border:0;cursor:pointer;background:var(--sf2);border-radius:12px;padding:10px 14px;min-height:44px}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--ne);outline-offset:2px}
+.b1{background:var(--ne);color:#0D1117;font-weight:700;width:100%;font-size:17px;border-radius:14px;min-height:52px}
+.b2{background:var(--or);color:#0D1117;font-weight:700}
+.chip{border-radius:99px;padding:8px 14px;min-height:40px;border:1px solid var(--ln);background:transparent}
+.chip.on{background:var(--ne);color:#0D1117;border-color:var(--ne);font-weight:700}
+.num{font-size:44px;line-height:1}
+.ring{position:relative;width:112px;height:112px;flex:none}.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring .num{font-size:34px}
+.stat{flex:1;background:var(--sf2);border-radius:14px;padding:10px 12px}.stat .num{font-size:30px;color:var(--ne)}
+.wk{display:flex;gap:6px;justify-content:space-between}
+.dt{flex:1;text-align:center;font-size:12px;color:var(--mu)}
+.dt i{display:block;height:34px;border-radius:10px;margin-bottom:4px;border:1.5px dashed var(--ln)}
+.dt.pl i{border:1.5px solid var(--or)}.dt.dn i{background:var(--ne);border-color:var(--ne)}.dt.t{color:var(--tx);font-weight:700}
+.fg{background:var(--sf2);border-radius:14px;flex:none;width:64px;height:44px;display:flex}.fg svg{width:100%;height:100%}
+.fg.big{width:100%;height:200px;border-radius:22px}
+.bars{display:flex;align-items:flex-end;gap:8px;height:100px}
+.bars div{flex:1;text-align:center;font-size:11px;color:var(--mu)}.bars b{display:block;background:var(--or);border-radius:6px 6px 2px 2px;margin-bottom:4px;min-height:3px}
+.bars div:last-child b{background:var(--ne)}
+.stp{display:flex;align-items:center;gap:4px}.stp button{padding:0;width:36px;min-height:36px;border-radius:10px}.stp span{min-width:34px;text-align:center;font-weight:700}
+select,input{background:var(--sf2);border:1px solid var(--ln);border-radius:12px;padding:10px;min-height:44px}select{flex:1}input{width:110px}
+.bg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bd{background:var(--sf2);border-radius:16px;padding:12px;opacity:.45}.bd.on{opacity:1;border:1.5px solid var(--ne)}.bd .e{font-size:28px}
+.pb{height:8px;background:var(--ln);border-radius:9px;overflow:hidden;margin-top:6px}.pb i{display:block;height:100%;background:var(--ne)}
+.nv{position:fixed;left:0;right:0;bottom:0;background:var(--sf);border-top:1px solid var(--ln);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom,0px);z-index:5}
+.nv div{display:flex;width:100%;max-width:480px}.nv button{flex:1;background:none;border-radius:0;padding:8px 0;font-size:12px;color:var(--mu);min-height:60px}.nv button b{display:block;font-size:20px;font-weight:400}.nv button.on{color:var(--ne);font-weight:700}
+#ov{display:none;position:fixed;inset:0;background:var(--bg);z-index:10;overflow:auto}
+.ovi{max-width:480px;margin:0 auto;padding:calc(env(safe-area-inset-top,0px) + 14px) 18px calc(env(safe-area-inset-bottom,0px) + 18px);text-align:center}
+.ovi.c{padding-top:20vh}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.hp{font-family:"Barlow Condensed",sans-serif;font-weight:700;font-size:22px;color:var(--or);margin:12px 0}
+.st{display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:16px}.st>button{width:60px;height:60px;font-size:28px;border-radius:18px}.st .num{display:block;font-size:64px}
+.rest .num{font-size:96px;color:var(--or)}.nx{margin-top:16px}
+.big-t{font-size:52px;color:var(--ne)}.feel{display:flex;gap:8px;justify-content:center;margin-top:20px}.feel button{font-size:28px;width:56px;padding:0}
+.ev{border-left:4px solid var(--or)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<div id="app"></div><div id="ov"></div>
+<nav class="nv"><div>
+<button data-t="home" onclick="go('home')"><b>🏠</b>Tổng quan</button>
+<button data-t="plan" onclick="go('plan')"><b>📋</b>Kế hoạch</button>
+<button data-t="prog" onclick="go('prog')"><b>📈</b>Tiến độ</button>
+<button data-t="ach" onclick="go('ach')"><b>🏆</b>Thành tích</button></div></nav>
+<script>
+const $=s=>document.querySelector(s),LS='tap-nha-v1';
+const E={
+pu:{n:'Hít đất',m:'Ngực, vai, tay sau',u:'lần',b:8,p:[['98,28 88,34 50,50 30,58 10,66','88,34 88,50 88,66'],['98,52 88,56 50,58 30,62 10,66','88,56 76,60 88,66']]},
+sq:{n:'Squat',m:'Đùi, mông',u:'lần',b:12,p:[['60,12 60,24 60,44 60,58 60,70','60,24 62,36 64,46'],['70,30 66,40 44,58 70,56 58,70','66,40 76,40 86,40']]},
+pl:{n:'Plank',m:'Core, vai',u:'giây',b:30,p:[['100,40 90,46 50,50 30,58 10,66','90,46 90,62 102,64'],['100,38 90,44 50,47 30,56 10,66','90,44 90,62 102,64']]},
+cr:{n:'Gập bụng',m:'Cơ bụng',u:'lần',b:12,p:[['100,62 88,64 56,64 40,46 26,64','88,64 96,56 104,60'],['86,40 78,50 56,64 40,46 26,64','78,50 70,40 60,42']]},
+lu:{n:'Lunge',m:'Đùi, mông',u:'lần',b:8,p:[['60,12 60,24 60,44','60,44 60,58 60,70','60,44 60,58 60,70'],['60,20 60,32 60,52','60,52 82,52 82,70','60,52 46,66 30,70']]},
+gb:{n:'Nâng hông',m:'Mông, lưng dưới',u:'lần',b:12,p:[['100,64 88,64 56,64 40,46 30,64'],['100,64 88,64 58,44 40,46 30,64']]},
+jj:{n:'Jumping jack',m:'Toàn thân, cardio',u:'lần',b:20,p:[['60,12 60,24 60,46','60,26 52,38 50,50','60,26 68,38 70,50','60,46 56,58 56,70','60,46 64,58 64,70'],['60,12 60,24 60,46','60,26 44,18 34,8','60,26 76,18 86,8','60,46 48,58 40,70','60,46 72,58 80,70']]}};
+const fig=(id,k)=>{const p=E[id].p[k%2],h=p[0].split(' ')[0].split(',');return `<svg viewBox="0 0 120 80"><line x1="4" y1="72" x2="116" y2="72" stroke="#2A3342" stroke-width="2"/>${p.map(l=>`<polyline points="${l}" fill="none" stroke="#C8FF2E" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>`).join('')}<circle cx="${h[0]}" cy="${h[1]}" r="7" fill="#FF7A1A"/></svg>`};
+const fg=(id,c='')=>`<div class="fg ${c}" data-f="${id}">${fig(id,0)}</div>`;
+let S=null;try{S=JSON.parse(localStorage.getItem(LS))}catch(e){}
+if(!S)S={pf:{goal:'tone',lv:1,dn:4},plan:null,logs:[],wt:[]};
+const save=()=>{try{localStorage.setItem(LS,JSON.stringify(S))}catch(e){}};
+function gen(){const{goal,lv,dn}=S.pf,L={2:[0,3],3:[0,2,4],4:[0,1,3,4],5:[0,1,2,4,5],6:[0,1,2,3,4,5]}[dn],m=[.8,1,1.3][lv]*(goal=='endu'?1.3:1),A=['pu','pl','cr','jj'],C=['sq','lu','gb','jj'],days=[[],[],[],[],[],[],[]];
+L.forEach((d,k)=>{const t=goal=='fat'&&k%3==2?['sq','pu','jj','cr']:(k%2?C:A);days[d]=t.map(id=>({id,s:lv+2,r:Math.round(E[id].b*m)}))});
+S.plan={rest:goal=='tone'?45:30,days};save()}
+if(!S.plan)gen();
+let T='home',O=-1,W=null,P=null,rt=null,tick=0;
+const DN=['Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7','Chủ nhật'],ymd=d=>d.toLocaleDateString('sv-SE'),td=()=>(new Date().getDay()+6)%7,dow=s=>(new Date(s+'T00:00').getDay()+6)%7;
+const monD=()=>{const d=new Date();d.setDate(d.getDate()-td());d.setHours(0,0,0,0);return d};
+const inWeek=l=>new Date(l.d+'T00:00')>=monD();
+const reps=l=>l.items.reduce((a,x)=>E[x.id].u=='giây'?a:a+x.r.reduce((p,q)=>p+q,0),0);
+const go=t=>{T=t;scrollTo(0,0);draw()};
+function streak(){const ds=new Set(S.logs.map(l=>l.d));let c=0,d=new Date();if(!ds.has(ymd(d)))d.setDate(d.getDate()-1);while(ds.has(ymd(d))){c++;d.setDate(d.getDate()-1)}return c}
+function best(){const a=[...new Set(S.logs.map(l=>l.d))].sort();let b=0,c=0,p=null;a.forEach(x=>{c=p&&(new Date(x)-new Date(p))==864e5?c+1:1;b=Math.max(b,c);p=x});return b}
+function evalTxt(){const n=new Date(),f=(a,b)=>S.logs.filter(l=>{const x=(n-new Date(l.d+'T00:00'))/864e5;return x>=a&&x<b});
+const c=f(0,14),p=f(14,28),vc=c.reduce((a,l)=>a+reps(l),0),vp=p.reduce((a,l)=>a+reps(l),0);
+if(!S.logs.length)return['Chưa có dữ liệu','Hoàn thành buổi tập đầu tiên để nhận đánh giá.'];
+if(!p.length)return['Đang khởi động',`Bạn đã tập ${c.length} buổi trong 14 ngày qua. Duy trì thêm 2 tuần để so sánh tiến bộ.`];
+const g=vp?Math.round((vc-vp)/vp*100):0;
+return g>=10?['Tiến bộ rõ rệt',`Khối lượng tập tăng ${g}% so với 14 ngày trước. Thử tăng 1 hiệp hoặc vài lần mỗi bài.`]:g>-10?['Ổn định','Khối lượng tập gần như không đổi. Muốn tiến xa hơn, hãy tăng dần số lần hoặc số hiệp.']:['Đang chững lại',`Khối lượng giảm ${-g}% so với 14 ngày trước. Hãy giữ nhịp tập đều, giảm số lần nếu thấy mệt.`]}
+const TH=[0,50,200,500,1000],LN=['Tân binh','Đồng','Bạc','Vàng','Kim cương'];
+function skill(id){const u=E[id].u=='giây'?3:1,v=S.logs.reduce((a,l)=>a+l.items.filter(x=>x.id==id).reduce((p,x)=>p+x.r.reduce((m,n)=>m+n,0),0),0);let k=0;TH.forEach((t,i)=>{if(v>=t*u)k=i});const nx=TH[k+1]*u;return{v,k,pc:nx?Math.round((v-TH[k]*u)/(nx-TH[k]*u)*100):100,nx}}
+const bd=()=>{const n=S.logs.length,r=S.logs.reduce((a,l)=>a+reps(l),0),m=S.logs.reduce((a,l)=>a+l.m,0),b=best();return[['🚀','Khởi động','Hoàn thành buổi đầu tiên',n>=1],['💪','Đều đặn','Tập đủ 5 buổi',n>=5],['🔥','Chiến binh','Tập đủ 20 buổi',n>=20],['⚡','Chuỗi 3 ngày','Tập 3 ngày liên tiếp',b>=3],['🏅','Chuỗi 7 ngày','Tập 7 ngày liên tiếp',b>=7],['🎯','Ngàn lần','Tích lũy 1000 lần tập',r>=1000],['⏱️','Bền bỉ','Tích lũy 300 phút tập',m>=300]]};
+const mins=ex=>Math.round(ex.reduce((a,e)=>a+e.s*(40+S.plan.rest),0)/60);
+
+function home(){const w=S.logs.filter(inWeek),pd=S.plan.days.filter(x=>x.length).length,dn=new Set(w.map(l=>dow(l.d))),t=td(),ex=S.plan.days[t],did=S.logs.some(l=>l.d==ymd(new Date())),[et,ev]=evalTxt(),C=2*Math.PI*44,pr=pd?Math.min(1,dn.size/pd):0;
+const today=did?`<h3>Hôm nay đã xong</h3><p class="mu">Làm tốt lắm. Nghỉ ngơi và uống đủ nước.</p>`:ex.length?`<h3>Hôm nay · ${ex.length} bài · khoảng ${mins(ex)} phút</h3><div class="row wr" style="margin:12px 0">${ex.map(e=>fg(e.id)).join('')}</div><button class="b1" onclick="P={d:${t}};draw()">Xem trước và tập</button>`:`<h3>Hôm nay nghỉ</h3><p class="mu">Ngày phục hồi cũng là một phần của kế hoạch.</p>`;
+return `<div class="hd"><p class="mu">${new Date().toLocaleDateString('vi-VN',{weekday:'long',day:'numeric',month:'long'})}</p><h1>Tập Nhà</h1></div>
+<div class="card row"><div class="ring"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#2A3342" stroke-width="10"/><circle cx="50" cy="50" r="44" fill="none" stroke="#C8FF2E" stroke-width="10" stroke-linecap="round" stroke-dasharray="${pr*C} ${C}"/></svg><div><span class="num">${dn.size}/${pd}</span><span class="mu" style="font-size:12px">buổi tuần này</span></div></div>
+<div style="flex:1"><div class="num" style="color:var(--or)">${streak()}</div><p class="mu">ngày liên tiếp</p></div></div>
+<div class="card">${today}</div>${(S.note||[]).length?`<div class="card ev"><h3>Độ khó buổi tới</h3>${S.note.map(n=>`<p>${n}</p>`).join('')}</div>`:''}
+<div class="card"><div class="wk">${DN.map((d,i)=>`<div class="dt ${dn.has(i)?'dn':S.plan.days[i].length?'pl':''} ${i==t?'t':''}"><i></i>${i==6?'CN':'T'+(i+2)}</div>`).join('')}</div></div>
+<div class="row" style="margin:0 16px 12px"><div class="stat"><div class="num">${S.logs.length}</div><span class="mu">buổi</span></div><div class="stat"><div class="num">${S.logs.reduce((a,l)=>a+reps(l),0)}</div><span class="mu">lần</span></div><div class="stat"><div class="num">${S.logs.reduce((a,l)=>a+l.m,0)}</div><span class="mu">phút</span></div></div>
+<div class="card ev"><h3>${et}</h3><p>${ev}</p></div>`}
+
+function plan(){const P=S.pf,ch=(k,v,t)=>`<button class="chip ${P[k]==v?'on':''}" onclick="pf('${k}',${typeof v=='string'?`'${v}'`:v})">${t}</button>`;
+return `<div class="hd"><h1>Kế hoạch</h1><p class="mu">Chọn mục tiêu để tạo nhanh, rồi chỉnh từng ngày theo ý bạn.</p></div>
+<div class="card"><h3>Mục tiêu</h3><div class="row wr" style="margin:8px 0 14px">${ch('goal','fat','Giảm mỡ')}${ch('goal','tone','Săn chắc')}${ch('goal','endu','Sức bền')}</div>
+<h3>Trình độ</h3><div class="row wr" style="margin:8px 0 14px">${ch('lv',0,'Mới tập')}${ch('lv',1,'Trung bình')}${ch('lv',2,'Khá')}</div>
+<h3>Số ngày tập mỗi tuần</h3><div class="row wr" style="margin:8px 0 14px">${[2,3,4,5,6].map(n=>ch('dn',n,n)).join('')}</div>
+<button class="b1" onclick="gen();O=-1;draw()">Tạo kế hoạch mới</button><p class="mu" style="font-size:13px;margin-top:8px">Kế hoạch hiện tại sẽ được thay thế.</p></div>
+<div class="card row sp"><div><h3>Nghỉ giữa các hiệp</h3></div><div class="stp"><button onclick="rs(-5)">−</button><span>${S.plan.rest}s</span><button onclick="rs(5)">+</button></div></div>
+<div class="card row sp"><div><h3>Tự tăng độ khó</h3><span class="mu">Tập đủ thì tăng, quá khó thì giảm</span></div><button class="chip ${S.auto!==false?'on':''}" onclick="ta()">${S.auto!==false?'Bật':'Tắt'}</button></div>
+${S.plan.days.map((ex,d)=>`<div class="card"><div class="row sp" onclick="tg(${d})" style="cursor:pointer;min-height:44px"><div><h3>${DN[d]}</h3><span class="mu">${ex.length?ex.length+' bài · '+mins(ex)+' phút':'Ngày nghỉ'}</span></div><span class="mu">${O==d?'▲':'▼'}</span></div>
+${O==d?`<div style="margin-top:10px">${ex.map((e,i)=>`<div class="row wr" style="padding:10px 0;border-top:1px solid var(--ln)">${fg(e.id)}<div style="flex:1;min-width:90px"><b>${E[e.id].n}</b> <span class="mu">bậc ${e.lv||1}</span></div><button onclick="del(${d},${i})" aria-label="Xóa bài">✕</button>
+<div class="row sp" style="width:100%"><div class="stp"><button onclick="chg(${d},${i},'s',-1)">−</button><span>${e.s} hiệp</span><button onclick="chg(${d},${i},'s',1)">+</button></div><div class="stp"><button onclick="chg(${d},${i},'r',-${E[e.id].u=='giây'?5:1})">−</button><span>${e.r} ${E[e.id].u}</span><button onclick="chg(${d},${i},'r',${E[e.id].u=='giây'?5:1})">+</button></div></div></div>`).join('')}
+<div class="row" style="margin-top:10px"><select id="a${d}">${Object.keys(E).map(k=>`<option value="${k}">${E[k].n}</option>`).join('')}</select><button class="b2" onclick="add(${d})">Thêm</button></div>
+${ex.length?`<button class="b1" style="margin-top:12px" onclick="P={d:${d}};draw()">Xem trước ngày này</button>`:''}</div>`:''}</div>`).join('')}`}
+
+function prog(){const[et,ev]=evalTxt(),m=monD(),wk=[];for(let i=7;i>=0;i--){const a=new Date(m);a.setDate(a.getDate()-7*i);const b=new Date(a);b.setDate(b.getDate()+7);wk.push(S.logs.filter(l=>{const x=new Date(l.d+'T00:00');return x>=a&&x<b}).length)}
+const mx=Math.max(1,...wk),w=S.wt.slice(-10),lo=Math.min(...w.map(x=>x.w)),hi=Math.max(...w.map(x=>x.w));
+const pts=w.map((x,i)=>`${w.length>1?i*190/(w.length-1)+5:100},${hi==lo?30:55-(x.w-lo)/(hi-lo)*50}`).join(' ');
+return `<div class="hd"><h1>Tiến độ</h1></div><div class="card ev"><h3>${et}</h3><p>${ev}</p></div>
+<div class="card"><h3>Số buổi tập 8 tuần gần nhất</h3><div class="bars" style="margin-top:12px">${wk.map((n,i)=>`<div><b style="height:${n/mx*80}px"></b>${n}</div>`).join('')}</div></div>
+<div class="card"><h3>Cân nặng</h3>${w.length?`<svg viewBox="0 0 200 60" style="width:100%;margin-top:8px"><polyline points="${pts}" fill="none" stroke="#FF7A1A" stroke-width="3" stroke-linejoin="round"/></svg><p>Gần nhất: <b>${w[w.length-1].w} kg</b>${w.length>1?` (${(w[w.length-1].w-w[0].w>0?'+':'')+(w[w.length-1].w-w[0].w).toFixed(1)} kg so với lần đầu)`:''}</p>`:'<p class="mu">Chưa có số đo. Nhập cân nặng để theo dõi thay đổi.</p>'}
+<div class="row" style="margin-top:8px"><input id="wi" type="text" inputmode="decimal" placeholder="kg"><button class="b2" onclick="addW()">Lưu cân nặng</button></div></div>
+<div class="card"><h3>Buổi tập gần đây</h3>${S.logs.length?S.logs.slice(-6).reverse().map(l=>`<div class="row sp" style="padding:10px 0;border-top:1px solid var(--ln)"><div><b>${new Date(l.d+'T00:00').toLocaleDateString('vi-VN',{weekday:'short',day:'numeric',month:'numeric'})}</b><br><span class="mu">${l.items.length} bài · ${reps(l)} lần · ${l.m} phút</span></div><span style="font-size:26px">${['😫','😕','🙂','😄','🔥'][l.f-1]||''}</span></div>`).join(''):'<p class="mu">Chưa có buổi tập nào. Bắt đầu ở tab Tổng quan.</p>'}</div>`}
+
+function ach(){return `<div class="hd"><h1>Thành tích</h1></div><div class="card"><h3>Huy hiệu</h3><div class="bg" style="margin-top:10px">${bd().map(b=>`<div class="bd ${b[3]?'on':''}"><div class="e">${b[0]}</div><b>${b[1]}</b><p class="mu" style="font-size:13px">${b[2]}</p></div>`).join('')}</div></div>
+<div class="card"><h3>Kỹ năng từng bài</h3>${Object.keys(E).map(id=>{const s=skill(id);return `<div class="row" style="padding:12px 0;border-top:1px solid var(--ln)">${fg(id)}<div style="flex:1"><div class="row sp"><b>${E[id].n}</b><span style="color:var(--ne)">${LN[s.k]}</span></div><div class="pb"><i style="width:${s.pc}%"></i></div><span class="mu" style="font-size:12px">${s.v}${s.nx?' / '+s.nx:''} ${E[id].u}</span></div></div>`}).join('')}</div>`}
+
+const chg=(d,i,k,v)=>{const e=S.plan.days[d][i];e[k]=Math.max(1,e[k]+v);save();draw()},del=(d,i)=>{S.plan.days[d].splice(i,1);save();draw()},add=d=>{const id=$('#a'+d).value;S.plan.days[d].push({id,s:3,r:E[id].b});save();O=d;draw()},tg=d=>{O=O==d?-1:d;draw()},pf=(k,v)=>{S.pf[k]=v;save();draw()},rs=v=>{S.plan.rest=Math.max(10,S.plan.rest+v);save();draw()};
+const addW=()=>{const v=parseFloat($('#wi').value.replace(',','.'));if(v>0){S.wt.push({d:ymd(new Date()),w:v});save();draw()}};
+function start(d){const ex=S.plan.days[d];if(!ex.length)return;P=null;W={d,i:0,s:0,rep:ex[0].r,log:[],t0:Date.now(),rest:0,done:false};draw()}
+function setDone(){const ex=S.plan.days[W.d],e=ex[W.i],it=W.log[W.i]||(W.log[W.i]={id:e.id,r:[]});it.r.push(W.rep);it.t=e.r;it.s=e.s;W.s++;if(W.s>=e.s){W.i++;W.s=0}
+if(W.i>=ex.length){W.done=true;draw();return}W.rep=ex[W.i].r;W.rest=S.plan.rest;draw();clearInterval(rt);rt=setInterval(()=>{W.rest--;if(W.rest<=0){W.rest=0;clearInterval(rt)}draw()},1000)}
+function adapt(d,items){const nt=[];if(S.auto===false)return nt;items.forEach(it=>{const e=S.plan.days[d].find(x=>x.id==it.id);if(!e||!it.t)return;const X=E[it.id],ra=it.r.reduce((a,b)=>a+b,0)/(it.t*it.s),st=X.u=='giây'?5:Math.max(1,Math.round(it.t*.1));
+if(ra>=1&&it.r.length>=it.s){if(e.r+st>X.b*2&&e.s<5){e.s++;e.r=X.b;nt.push(`${X.n}: thêm 1 hiệp, lên ${e.s} hiệp`)}else{e.r+=st;nt.push(`${X.n}: tăng lên ${e.r} ${X.u}`)}e.lv=(e.lv||1)+1}
+else if(ra<.7){e.r=Math.max(Math.ceil(X.b*.5),e.r-st);nt.push(`${X.n}: giảm còn ${e.r} ${X.u} để dễ hoàn thành hơn`)}});save();return nt}
+const ta=()=>{S.auto=S.auto===false;save();draw()};
+function prev(){const ex=S.plan.days[P.d];return `<div class="ovi"><div class="top"><button onclick="P=null;draw()" aria-label="Đóng">✕</button><span class="mu">Xem trước · ${DN[P.d]}</span></div><h2>${ex.length} bài · khoảng ${mins(ex)} phút</h2><div style="text-align:left;margin:14px 0">${ex.map(e=>{const X=E[e.id];return `<div class="card row" style="margin:0 0 10px">${fg(e.id,'an')}<div style="flex:1"><b>${X.n}</b><br><span class="mu">${X.m}</span></div><div style="text-align:right"><b>${e.s} × ${e.r}</b><br><span class="mu">${X.u} · bậc ${e.lv||1}</span></div></div>`}).join('')}</div><button class="b1" onclick="start(${P.d})">Bắt đầu tập</button></div>`}
+function quit(){clearInterval(rt);W=null;draw()}
+function fin(f){clearInterval(rt);const items=W.log.filter(Boolean);S.logs.push({d:ymd(new Date()),items,f,m:Math.max(1,Math.round((Date.now()-W.t0)/6e4))});S.note=adapt(W.d,items);save();W=null;draw()}
+function work(){const ex=S.plan.days[W.d];
+if(W.done){const m=Math.max(1,Math.round((Date.now()-W.t0)/6e4));return `<div class="ovi c"><div class="big-t">Hoàn thành!</div><p class="mu">${m} phút. Bạn cảm thấy thế nào?</p><div class="feel">${['😫','😕','🙂','😄','🔥'].map((e,i)=>`<button onclick="fin(${i+1})" aria-label="Mức ${i+1}">${e}</button>`).join('')}</div></div>`}
+const e=ex[W.i],X=E[e.id],nx=ex[W.i+1];
+return `<div class="ovi"><div class="top"><button onclick="quit()" aria-label="Thoát">✕</button><span class="mu">Bài ${W.i+1}/${ex.length}</span></div>${fg(e.id,'big')}<h2 style="margin-top:14px">${X.n}</h2><p class="mu">${X.m}</p><div class="hp">Hiệp ${W.s+1}/${e.s}</div>
+${W.rest>0?`<div class="rest"><div class="num">${W.rest}</div><p class="mu">giây nghỉ</p><button class="b2" onclick="W.rest=0;clearInterval(rt);draw()">Bỏ qua nghỉ</button></div>`:`<div class="st"><button onclick="W.rep=Math.max(1,W.rep-1);draw()">−</button><div><b class="num">${W.rep}</b><span class="mu">${X.u}</span></div><button onclick="W.rep++;draw()">+</button></div><button class="b1" onclick="setDone()">Xong hiệp</button>`}
+${nx?`<p class="mu nx">Tiếp theo: ${E[nx.id].n}</p>`:''}</div>`}
+function draw(){const y=scrollY;$('#app').innerHTML={home,plan,prog,ach}[T]();$('#ov').innerHTML=W?work():P?prev():'';$('#ov').style.display=W||P?'block':'none';document.querySelectorAll('.nv button').forEach(b=>b.classList.toggle('on',b.dataset.t==T));scrollTo(0,y)}
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches)setInterval(()=>{tick++;document.querySelectorAll('.fg.big,.fg.an').forEach(e=>e.innerHTML=fig(e.dataset.f,tick))},700);
+draw();
+</script></body></html>
